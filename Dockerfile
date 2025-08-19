@@ -1,5 +1,5 @@
-# Use Node.js 18 Alpine como base para menor tamanho
-FROM node:18-alpine
+# Use Node.js 20 Alpine como base para compatibilidade com n8n
+FROM node:20-alpine
 
 # Instalar dependências necessárias
 RUN apk add --no-cache \
