@@ -1,0 +1,28 @@
+{
+  "name": "n8n-docker",
+  "version": "1.0.0",
+  "description": "n8n Docker setup for Railway deployment",
+  "main": "index.js",
+  "scripts": {
+    "start": "n8n start",
+    "dev": "n8n start --tunnel",
+    "build": "echo 'Build handled by Docker'",
+    "test": "echo 'No tests specified'"
+  },
+  "dependencies": {
+    "n8n": "^1.28.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
+  "keywords": [
+    "n8n",
+    "workflow",
+    "automation",
+    "docker",
+    "railway"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
+}
