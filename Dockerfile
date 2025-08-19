@@ -40,10 +40,17 @@ ENV N8N_BASIC_AUTH_ACTIVE=true \
     N8N_USER_MANAGEMENT_DISABLED=false \
     N8N_TEMPLATES_ENABLED=true \
     N8N_ONBOARDING_FLOW_DISABLED=true \
-    NODE_ENV=production
+    NODE_ENV=production \
+    DB_TYPE=sqlite \
+    DB_SQLITE_DATABASE=/home/node/.n8n/database.sqlite \
+    WEBHOOK_URL=http://localhost:5678/ \
+    EXECUTIONS_PROCESS=main \
+    EXECUTIONS_MODE=regular \
+    LOG_LEVEL=info \
+    GENERIC_TIMEZONE=UTC
 
 # Usar dumb-init para gerenciar sinais corretamente
 ENTRYPOINT ["dumb-init", "--"]
 
 # Comando padrão
-CMD ["su-exec", "n8n", "npm", "start"]
+CMD ["su-exec", "n8n", "sh", "-c", "echo 'Starting n8n...' && npm start"]
