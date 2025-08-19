@@ -8,8 +8,8 @@ RUN apk add --no-cache \
     tzdata
 
 # Criar usuário não-root para segurança
-RUN addgroup -g 1000 -S nodejs && \
-    adduser -D -s /bin/sh -u 1000 -G nodejs n8n
+RUN addgroup -g 1001 -S nodejs && \
+    adduser -D -s /bin/sh -u 1001 -G nodejs n8n
 
 # Definir diretório de trabalho
 WORKDIR /home/node/.n8n
@@ -24,7 +24,8 @@ RUN npm ci --only=production && npm cache clean --force
 COPY . .
 
 # Mudar propriedade dos arquivos para o usuário n8n
-RUN chown -R n8n:nodejs /home/node/.n8n
+RUN chown -R n8n:nodejs /home/node/.n8n && \
+    chmod -R 755 /home/node/.n8n
 
 # Expor porta padrão do n8n
 EXPOSE 5678
