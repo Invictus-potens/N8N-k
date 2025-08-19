@@ -9,7 +9,7 @@ RUN apk add --no-cache \
 
 # Criar usuário não-root para segurança
 RUN addgroup -g 1000 -S nodejs && \
-    adduser -S n8n -u 1000
+    adduser -D -s /bin/sh -u 1000 -G nodejs n8n
 
 # Definir diretório de trabalho
 WORKDIR /home/node/.n8n
