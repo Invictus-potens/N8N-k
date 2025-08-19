@@ -46,4 +46,4 @@ ENV N8N_BASIC_AUTH_ACTIVE=true \
 ENTRYPOINT ["dumb-init", "--"]
 
 # Comando padrão
-CMD ["su-exec", "n8n", "n8n", "start"]
+CMD ["su-exec", "n8n", "node", "./node_modules/.bin/n8n", "start"]
