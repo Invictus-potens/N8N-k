@@ -31,15 +31,9 @@ RUN chown -R n8n:nodejs /home/node/.n8n && \
 EXPOSE 5678
 
 # Definir variáveis de ambiente padrão
-ENV N8N_BASIC_AUTH_ACTIVE=true \
-    N8N_BASIC_AUTH_USER=admin \
-    N8N_BASIC_AUTH_PASSWORD=admin \
-    N8N_HOST=0.0.0.0 \
+ENV N8N_HOST=0.0.0.0 \
     N8N_PORT=5678 \
     N8N_PROTOCOL=http \
-    N8N_USER_MANAGEMENT_DISABLED=false \
-    N8N_TEMPLATES_ENABLED=true \
-    N8N_ONBOARDING_FLOW_DISABLED=true \
     NODE_ENV=production \
     DB_TYPE=sqlite \
     DB_SQLITE_DATABASE=/home/node/.n8n/database.sqlite \
@@ -47,7 +41,21 @@ ENV N8N_BASIC_AUTH_ACTIVE=true \
     EXECUTIONS_PROCESS=main \
     EXECUTIONS_MODE=regular \
     LOG_LEVEL=info \
-    GENERIC_TIMEZONE=UTC
+    GENERIC_TIMEZONE=UTC \
+    # Configurações de multiusuário
+    N8N_USER_MANAGEMENT_DISABLED=false \
+    N8N_USER_MANAGEMENT_JWT_SECRET=your-super-secret-jwt-token \
+    N8N_USER_MANAGEMENT_SMTP_HOST= \
+    N8N_USER_MANAGEMENT_SMTP_PORT=587 \
+    N8N_USER_MANAGEMENT_SMTP_USER= \
+    N8N_USER_MANAGEMENT_SMTP_PASS= \
+    N8N_USER_MANAGEMENT_SMTP_SENDER= \
+    # Configurações de autenticação
+    N8N_BASIC_AUTH_ACTIVE=false \
+    N8N_AUTH_EXCLUDE_ENDPOINTS=metrics,healthz,health \
+    # Configurações de templates e onboarding
+    N8N_TEMPLATES_ENABLED=true \
+    N8N_ONBOARDING_FLOW_DISABLED=true
 
 # Usar dumb-init para gerenciar sinais corretamente
 ENTRYPOINT ["dumb-init", "--"]

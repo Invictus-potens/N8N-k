@@ -31,9 +31,10 @@ docker-compose up -d
 ### 3. Acesse o n8n
 Abra http://localhost:5678 no seu navegador
 
-**Credenciais padrão:**
-- Usuário: `admin`
-- Senha: `admin`
+**Configuração de usuários:**
+- **Modo multiusuário ativado** por padrão
+- **Primeiro acesso**: Crie sua conta de administrador
+- **Usuários subsequentes**: Podem se registrar ou ser convidados
 
 ## 🚂 Deploy no Railway
 
@@ -68,6 +69,33 @@ GENERIC_TIMEZONE=UTC
 O Railway detectará automaticamente o Dockerfile e fará o build.
 
 ## 🔧 Configurações
+
+### 🔐 Configuração de Multiusuário
+
+O n8n está configurado para **modo multiusuário** por padrão. Para configurar:
+
+#### 1. Variáveis Obrigatórias:
+```bash
+# JWT Secret (obrigatório para multiusuário)
+N8N_USER_MANAGEMENT_JWT_SECRET=sua-chave-secreta-muito-segura
+
+# SMTP para envio de emails (opcional, mas recomendado)
+N8N_USER_MANAGEMENT_SMTP_HOST=smtp.gmail.com
+N8N_USER_MANAGEMENT_SMTP_PORT=587
+N8N_USER_MANAGEMENT_SMTP_USER=seu-email@gmail.com
+N8N_USER_MANAGEMENT_SMTP_PASS=sua-senha-app
+N8N_USER_MANAGEMENT_SMTP_SENDER=seu-email@gmail.com
+```
+
+#### 2. Primeiro Acesso:
+- Acesse a URL do n8n
+- Crie sua primeira conta (será automaticamente admin)
+- Configure usuários adicionais através da interface
+
+#### 3. Gerenciar Usuários:
+- **Admin**: Pode criar, editar e remover usuários
+- **Usuários**: Podem acessar workflows e executar tarefas
+- **Permissões**: Configuráveis por usuário e workflow
 
 ### Variáveis de Ambiente Importantes
 
